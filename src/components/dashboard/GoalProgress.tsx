@@ -23,7 +23,8 @@ export const GoalProgress = ({ goal, currentValue }: GoalProgressProps) => {
     ? currentValue < goal.currentValue 
     : currentValue > goal.currentValue;
 
-  const daysRemaining = Math.ceil((new Date(goal.targetDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+  const endOfYear = new Date(new Date().getFullYear(), 11, 31);
+  const daysRemaining = Math.max(0, Math.ceil((endOfYear.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)));
 
   return (
     <Card className="shadow-card hover:shadow-chart transition-smooth">
